@@ -1,106 +1,115 @@
-🖼️ Image Vectorizer Web App
+# 🖼️ Image Vectorizer App
 
-A simple single-page web application that allows users to:
-- Upload an image (.jpg, .jpeg, .png, or .gif)
-- Convert it to SVG format using the Vectorizer.ai API
-- Automatically download the resulting SVG file
+A full-stack web app for converting PNG, JPG, and GIF files into SVG vector graphics using the [Vectorizer.ai](https://vectorizer.ai) API.
 
----
+Built with:
 
-🚀 Features
-- Drag & drop or browse image file upload
-- File validation (type & size)
-- Live thumbnail preview
-- API integration with Vectorizer.ai
-- Auto-download converted SVG with original filename
-- Responsive and accessible UI
-- Graceful error handling
+* **Frontend**: React + Vite + Tailwind CSS
+* **Backend**: Express + TypeScript + ts-node-dev
+* **Tooling**: `concurrently` for full-stack development
 
 ---
 
-🧰 Tech Stack
-- Frontend: React + Tailwind CSS
-- Backend (optional): Node.js (Express) or Vercel Serverless Functions
-- Deployment: Vercel (or any static host)
+## 🚀 Quick Start
 
----
-
-🛠️ Getting Started
-
-1. Clone the Repository
+### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/dannysarco/image-vectorizer-app.git
-cd image-vectorizer-app
+git clone your-repo-url
+cd image-vectorizer-root
 ```
 
-2. Install Dependencies
+### 2. Install Root Tools
 
 ```bash
-npm install
+npm install  # installs concurrently
 ```
 
-3. Set Up Environment Variables
-
-Create a .env file based on .env.example:
+### 3. Install Frontend and Backend Dependencies
 
 ```bash
-cp .env.example .env
+cd frontend && npm install && cd ..
+cd backend && npm install && cd ..
 ```
 
-Add your Vectorizer.ai API key (if required):
+### 4. Add API Credentials to Backend
 
-```
-VECTORIZER_API_KEY=your_api_key_here
+Create `backend/.env`:
+
+```env
+VECTORIZER_USER=your_api_user
+VECTORIZER_PASS=your_api_password
 ```
 
-4. Start Development Server
+> You must have a Vectorizer.ai API subscription. See [pricing](https://vectorizer.ai/pricing).
+
+### 5. Run the App
 
 ```bash
 npm run dev
 ```
 
-Visit http://localhost:3000
+* Frontend: [http://localhost:5173](http://localhost:5173)
+* Backend Proxy: [http://localhost:3001/vectorize](http://localhost:3001/vectorize)
 
 ---
 
-📦 Project Structure
+## 🧪 Development Features
+
+* Hot-reloading frontend via Vite
+* Auto-restarting backend with `ts-node-dev`
+* File preview, conversion status, and auto-download
+
+---
+
+## 🧯 Troubleshooting
+
+### ❌ Credentials show as undefined
+
+* Ensure `.env` is in `backend/`
+* Restart after edits (`npm run dev`)
+* Variables must be:
+
+  ```env
+  VECTORIZER_USER=...
+  VECTORIZER_PASS=...
+  ```
+
+### ❌ 401 / 402 errors from API
+
+* 401: Check credentials spelling or syntax
+* 402: You need an active API subscription
+
+  * Or append `?mode=test` to the API URL (dev mode only)
+
+### ❌ CORS issues
+
+* You must use the backend proxy. The API does **not** support frontend-origin CORS.
+
+---
+
+## 📦 Project Structure
 
 ```
-├── public/
-├── src/
-│   ├── components/
-│   ├── App.tsx
-│   ├── api.ts
-│   └── utils.ts
-├── .env.example
-├── package.json
+image-vectorizer-app/
+├── backend/
+│   ├── server.ts          ← Express proxy
+│   ├── .env               ← Your API creds
+│   └── tsconfig.json
+├── frontend/
+│   ├── src/
+│   ├── index.html
+│   └── package.json
+├── package.json           ← Runs both with concurrently
 └── README.md
 ```
 
+---
+
+## 📃 License
+
+MIT — Use freely, credit appreciated.
 
 ---
 
-🧪 TODO / Enhancements
-- Add loading animation during conversion
-- Improve error messaging UX
-- Add support for mobile drag-and-drop
-- Optional history of recent conversions
-
----
-
-📄 License
-
-MIT License
-
----
-
-🙏 Credits
-- Vectorizer.ai for the API
-- React & Tailwind CSS
-
----
-
-Author: Danny Sarco
-
-Happy vectorizing!
+Made with ❤️ by \[you].
